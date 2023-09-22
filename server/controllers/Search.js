@@ -8,7 +8,7 @@ const SearchList = async (req, res) => {
     QueryListByName({firstName, lastName})
     .then(data => {
         console.log(data)
-        if(data){ return res.status(302).json(data) }
+        if(data){ return res.status(200).json(data) }
         return res.status(404).json(null)
 
     })
