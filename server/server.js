@@ -19,6 +19,14 @@ const searchRoute = require('./routes/Search')
 app.use('/search', searchRoute)
 
 app.use((req, res, next) => {
+    if (req.method == 'GET') {
+        res.header('Cache-control', `public, max-age=300`)
+    } else {
+        // for the other requests set strict no caching parameters
+        res.header('Cache-control', `no-store`)
+    }
+
+    res.header('X-Content-Type-Options', 'nosniff')
     res.header('Content-Type', 'application/json')
     res.header('Access-Control-Allow-Credentials', true)
     res.header(
