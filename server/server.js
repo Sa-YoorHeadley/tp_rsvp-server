@@ -3,11 +3,12 @@ const express = require('express')
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose')
-
+const { Logger } = require('./middleware/Logger');
 
 //App initialization
 const app = express()
-app.use(cors({origin: 'http://127.0.0.1:5173', credentials: true}));
+app.use(Logger)
+app.use(cors({origin: process.env.CLIENT_URI, credentials: true}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 

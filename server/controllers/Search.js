@@ -22,6 +22,7 @@ const RespondYes = async (req, res) => {
     if(plusOneResponse){
         RespondYesByName({firstName, lastName, plusOneResponse})
         .then(data => {
+            console.log(data)
             res.status(200).json(data)
         })
         .catch(error => {
@@ -32,6 +33,7 @@ const RespondYes = async (req, res) => {
 
     RespondYesByName({firstName, lastName, plusOneResponse})
     .then(data => {
+        console.log(data)
         res.status(200).json(data)
     })
     .catch(error => {
