@@ -8,7 +8,7 @@ const { Logger } = require('./middleware/Logger');
 //App initialization
 const app = express()
 app.use(Logger)
-app.use(cors({origin: process.env.CLIENT_URI, credentials: true}));
+app.use(cors({origin: 'https://sa-yoorheadley.github.io/ss_rsvp/', credentials: true}));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
