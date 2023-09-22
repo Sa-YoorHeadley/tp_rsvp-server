@@ -5,7 +5,7 @@ const SearchList = async (req, res) => {
     const {firstName, lastName} = req.query
     console.log(req.query)
 
-    QueryListByName({firstName, lastName})
+    QueryListByName({firstName: firstName.trim(), lastName: lastName.trim()})
     .then(data => {
         console.log(data)
         if(data){ return res.status(200).json(data) }
@@ -20,7 +20,7 @@ const SearchList = async (req, res) => {
 const RespondYes = async (req, res) => {
     const {firstName, lastName, plusOneResponse} = req.query
     if(plusOneResponse){
-        RespondYesByName({firstName, lastName, plusOneResponse})
+        RespondYesByName({firstName: firstName.trim(), lastName: lastName.trim(), plusOneResponse})
         .then(data => {
             console.log(data)
             res.status(200).json(data)
@@ -31,9 +31,9 @@ const RespondYes = async (req, res) => {
         })
     }
 
-    RespondYesByName({firstName, lastName, plusOneResponse})
+    RespondYesByName({firstName: firstName.trim(), lastName: lastName.trim(), plusOneResponse})
     .then(data => {
-        console.log(data)
+        console.log
         res.status(200).json(data)
     })
     .catch(error => {
@@ -44,7 +44,7 @@ const RespondYes = async (req, res) => {
 const RespondNo = async (req, res) => {
     const {firstName, lastName, plusOneResponse} = req.query
     if(plusOneResponse){
-        RespondNoByName({firstName, lastName, plusOneResponse})
+        RespondNoByName({firstName: firstName.trim(), lastName: lastName.trim(), plusOneResponse})
         .then(data => {
             res.status(200).json(data)
         })
@@ -54,7 +54,7 @@ const RespondNo = async (req, res) => {
         })
     }
 
-    RespondNoByName({firstName, lastName, plusOneResponse})
+    RespondNoByName({firstName: firstName.trim(), lastName: lastName.trim(), plusOneResponse})
     .then(data => {
         res.status(200).json(data)
     })
