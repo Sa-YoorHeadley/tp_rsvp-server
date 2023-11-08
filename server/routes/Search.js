@@ -6,7 +6,7 @@ const { SearchList, GetAll, GetDetails, RespondYes, RespondNo } = require('../co
 router.get("/", SearchList);
 router.get("/all", GetAll);
 router.get("/details", GetDetails);
-router.get("/wake", () => { 
+router.get("/wake", (req, res) => { 
     console.log('Wake')
     res.status(200)
     res.json({status: 'Running'})
