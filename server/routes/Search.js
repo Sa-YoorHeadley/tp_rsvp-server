@@ -1,9 +1,16 @@
 const express = require('express')
 const router = express.Router()
 
-const { SearchList, RespondYes, RespondNo } = require('../controllers/Search')
+const { SearchList, GetAll, GetDetails, RespondYes, RespondNo } = require('../controllers/Search')
 
 router.get("/", SearchList);
+router.get("/all", GetAll);
+router.get("/details", GetDetails);
+router.get("/wake", () => { 
+    console.log('Wake')
+    res.status(200)
+    res.json({status: 'Running'})
+});
 router.patch("/no", RespondNo);
 router.patch("/yes", RespondYes);
 

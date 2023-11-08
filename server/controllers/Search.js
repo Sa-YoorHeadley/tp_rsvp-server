@@ -1,4 +1,4 @@
-const { QueryListByName, RespondYesByName, RespondNoByName } = require("../service/Search");
+const { QueryList, QueryListDetails, QueryListByName, RespondYesByName, RespondNoByName } = require("../service/Search");
 
 
 const SearchList = async (req, res) => {
@@ -6,6 +6,36 @@ const SearchList = async (req, res) => {
     console.log(req.query)
 
     QueryListByName({firstName: firstName.trim(), lastName: lastName.trim()})
+    .then(data => {
+        console.log(data)
+        if(data){ return res.status(200).json(data) }
+        return res.status(404).json(null)
+
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(404).json(null)
+    })
+}
+
+const GetAll = async (req, res) => {
+
+    QueryList()
+    .then(data => {
+        // console.log(data) 
+        if(data){ return res.status(200).json(data) }
+        return res.status(404).json(null)
+
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(404).json(null)
+    })
+}
+
+const GetDetails = async (req, res) => {
+
+    QueryListDetails()
     .then(data => {
         console.log(data)
         if(data){ return res.status(200).json(data) }
@@ -64,4 +94,4 @@ const RespondNo = async (req, res) => {
     })
 }
 
-module.exports = { SearchList, RespondYes, RespondNo }; 
+module.exports = { SearchList, GetAll, GetDetails, RespondYes, RespondNo }; 

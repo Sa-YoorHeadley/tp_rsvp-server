@@ -4,6 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose')
 const { Logger } = require('./middleware/Logger');
+const { Timer } = require('./middleware/Timer');
 
 //App initialization
 const app = express()
@@ -20,10 +21,10 @@ app.use('/search', searchRoute)
 
 app.use((req, res, next) => {
     if (req.method == 'GET') {
-        res.header('Cache-control', `public, max-age=300`)
+        res.set('Cache-control', `public, max-age=300`)
     } else {
         // for the other requests set strict no caching parameters
-        res.header('Cache-control', `no-store`)
+        res.set('Cache-control', `no-store`)
     }
 
     res.header('X-Content-Type-Options', 'nosniff')
@@ -43,6 +44,7 @@ mongoose.connect(process.env.DB_URI)
         const port = process.env.PORT || 3001
         app.listen(port, () => {
             console.log(`Connected to Database and Server is running on port ${port}`);
+            Timer()
         });
     })
     .catch(error => {
