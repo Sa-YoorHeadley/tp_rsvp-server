@@ -7,7 +7,7 @@ rule.second = new schedule.Range(0, 59, 35);
 const Timer = () => {
   schedule.scheduleJob(rule, () => {
     axios
-      .get("https://tp-rsvp-api.onrender.com/search/wake")
+      .get("https://tp-rsvp-server.onrender.com/search/wake")
       .then((response) => {
         console.log(response.data);
       })
