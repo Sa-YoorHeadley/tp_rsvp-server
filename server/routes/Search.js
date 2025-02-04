@@ -1,18 +1,28 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const { SearchList, GetAll, GetDetails, RespondYes, RespondNo } = require('../controllers/Search')
+const {
+  SearchList,
+  GetAll,
+  GetDetails,
+  GetPendings,
+  GetYeses,
+  GetNos,
+  RespondYes,
+  RespondNo,
+} = require("../controllers/Search");
 
 router.get("/", SearchList);
 router.get("/all", GetAll);
 router.get("/details", GetDetails);
-router.get("/wake", (req, res) => { 
-    console.log('Wake')
-    res.status(200)
-    res.json({status: 'Running'})
+router.get("/pendings", GetPendings);
+router.get("/yeses", GetYeses);
+router.get("/nos", GetNos);
+router.get("/wake", (req, res) => {
+  res.status(200);
+  res.json({ status: "Awake" });
 });
 router.patch("/no", RespondNo);
 router.patch("/yes", RespondYes);
 
-
-module.exports = router
+module.exports = router;

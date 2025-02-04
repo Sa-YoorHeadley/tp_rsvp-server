@@ -9,7 +9,7 @@ const Timer = () => {
     axios
       .get("https://tp-rsvp-server.onrender.com/search/wake")
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error);

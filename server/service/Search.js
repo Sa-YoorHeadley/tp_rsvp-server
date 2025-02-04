@@ -27,6 +27,45 @@ const QueryList = () => {
   });
 };
 
+const QueryListPendings = () => {
+  return new Promise(async (resolve, reject) => {
+    List.find({ response: "Pending" }, "-_id firstName lastName")
+      .then((data) => {
+        return resolve(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        return reject(error);
+      });
+  });
+};
+
+const QueryListYeses = () => {
+  return new Promise(async (resolve, reject) => {
+    List.find({ response: "Yes" }, "-_id firstName lastName")
+      .then((data) => {
+        return resolve(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        return reject(error);
+      });
+  });
+};
+
+const QueryListNos = () => {
+  return new Promise(async (resolve, reject) => {
+    List.find({ response: "Nos" }, "-_id firstName lastName")
+      .then((data) => {
+        return resolve(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        return reject(error);
+      });
+  });
+};
+
 const QueryListDetails = () => {
   return new Promise(async (resolve, reject) => {
     const details = {};
@@ -86,6 +125,9 @@ const RespondNoByName = (name) => {
 module.exports = {
   QueryList,
   QueryListDetails,
+  QueryListPendings,
+  QueryListYeses,
+  QueryListNos,
   QueryListByName,
   RespondYesByName,
   RespondNoByName,
